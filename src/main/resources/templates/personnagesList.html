@@ -7,17 +7,23 @@
 </head>
 <body>
 <h1>Person List</h1>
-<a href="addPersonnage.html">Ajouter un Personnage</a>
+<a href="addPersonnage">Ajouter un Personnage</a>
 <br/><br/>
 <div>
     <table border="1">
         <tr>
+            <th>Id</th>
             <th>Nom</th>
             <th>Type</th>
+            <th>/</th>
+            <th>X</th>
         </tr>
         <tr th:each ="personne : ${personnages}">
+            <td th:utext="${personne.id}">...</td>
             <td th:utext="${personne.name}">...</td>
             <td th:utext="${personne.type}">...</td>
+            <td><a th:href="@{/editPersonnage} + '/' + ${personne.id}">Edit</a></td>
+            <td><a th:href="@{/delete} + '/' + ${personne.id}">Delete</a></td>
         </tr>
     </table>
 </div>
