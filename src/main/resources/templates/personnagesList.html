@@ -17,6 +17,7 @@
             <th>Type</th>
             <th>/</th>
             <th>X</th>
+            <th>Show</th>
         </tr>
         <tr th:each ="personne : ${personnages}">
             <td th:utext="${personne.id}">...</td>
@@ -24,6 +25,7 @@
             <td th:utext="${personne.type}">...</td>
             <td><a th:href="@{/editPersonnage} + '/' + ${personne.id}">Edit</a></td>
             <td><a th:href="@{/delete} + '/' + ${personne.id}">Delete</a></td>
+            <td><a th:href="@{/show} + '/' + ${personne.id}">Show</a></td>
         </tr>
     </table>
 </div>

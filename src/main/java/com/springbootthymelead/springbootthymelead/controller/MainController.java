@@ -40,6 +40,17 @@ public class MainController {
         return "personnagesList";
     }
 
+    @GetMapping(value = { "/show/{id}" })
+    public String personnagesStats(Model model, @PathVariable int id) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        Personnage personnage = restTemplate.getForObject("http://localhost:8081/personnages/" + id, Personnage.class);
+
+        model.addAttribute("personnage", personnage);
+
+        return "personnageStats";
+    }
+
     @GetMapping(value = { "/addPersonnage" })
     public String AddPersonPage(Model model) {
 
