@@ -102,17 +102,14 @@ public class MainController {
     @PostMapping(value = { "/addPersonnage" })
     public String savePerson(Model model,@ModelAttribute("personnageForm") PersonnageForm personnageForm) {
 
-        RestTemplate restTemplate = new RestTemplate();
-        Personnage[] personnages = restTemplate.getForObject("http://localhost:8081/personnages", Personnage[].class);
-
         String name = personnageForm.getName();
         String type = personnageForm.getType();
 
         if (name != null && name.length() > 0 //
                 && type != null && type.length() > 0) {
-            Personnage e = personnages[(personnages.length-1)];
-            Personnage newPersonnage = new Personnage(e.getId()+1, name, type);
+            Personnage newPersonnage = new Personnage(name, type);
 
+            RestTemplate restTemplate = new RestTemplate();
             restTemplate.postForObject("http://localhost:8081/personnages",newPersonnage, Personnage.class);
 
             return "redirect:/personnages";
